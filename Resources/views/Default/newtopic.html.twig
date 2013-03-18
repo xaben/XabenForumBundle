@@ -1,0 +1,16 @@
+{% extends "XabenForumBundle::layout.html.twig" %}
+
+
+
+
+{% block content %}
+<div id="forum">
+    <div class="inner_header">Crează o temă nouă</div>
+        <form action="{{ path('XabenForumBundle_newtopic', { 'forumId': forumId }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="Postează" />
+        </div>
+    </form>
+</div>
+{% endblock %}

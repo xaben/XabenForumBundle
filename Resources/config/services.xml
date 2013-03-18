@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sonata.admin.category" class="Xaben\ForumBundle\Admin\CategoryAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Forum" label="Category"/>
+            <argument />
+            <argument>Xaben\ForumBundle\Entity\Category</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setTranslationDomain">
+                <argument>XabenForumBundle</argument>
+            </call>
+        </service>
+
+        <service id="sonata.admin.forum" class="Xaben\ForumBundle\Admin\ForumAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Forum" label="Forums"/>
+            <argument />
+            <argument>Xaben\ForumBundle\Entity\Forum</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+            <call method="setTranslationDomain">
+                <argument>XabenForumBundle</argument>
+            </call>
+        </service>
+
+    </services>
+
+</container>

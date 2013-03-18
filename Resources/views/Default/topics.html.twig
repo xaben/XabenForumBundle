@@ -1,0 +1,40 @@
+{% extends "XabenForumBundle::layout.html.twig" %}
+
+
+{% block topicnav %}
+<div class="nav">
+    <a class="button" href="{{ path('XabenForumBundle_newtopic', { 'forumId': forum.id }) }}">New Topic</a>
+    <a href="{{ path('XabenForumBundle_index') }}">Forum Index</a> ->
+    <a href="{{ path('XabenForumBundle_topics', { 'forumId': forum.id }) }}">{{ forum.title }}</a>
+    {{ knp_pagination_render(topics) }}
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div id="forum">
+    {{ block('topicnav') }}
+	<table>
+		<tr>
+			<th colspan="2">Subiecte</th>
+			<th style="width: 100px">Autor</th>
+			<th style="width: 100px">Raspunsuri</th>
+			<th style="width: 100px">Vizualizari</th>
+			<th style="width: 150px">Ultimul mesaj</th>
+		</tr>
+	    {% for topic in topics %}
+		    <tr>
+		    	<td class="c1" style="width: 30px;"><img src="/bundles/Xabenforum/img/folder.gif"/></td>
+				<td class="c2">
+				    <a href="{{ path('XabenForumBundle_posts', { 'topicId': topic.id }) }}">{{ topic.title }}</a>
+				</td>
+				<td>{{ topic.poster }}</td>
+				<td>{{ topic.replies }}</td>
+				<td>{{ topic.views }}</td>
+				<td>{{ topic.lastpost.posttime |date('d M Y H:i:s') }}<br/><a class="member">{{topic.lastpost.poster}}</a></td>
+		    </tr>
+	    {% endfor %}
+	</table>
+    {{ block('topicnav') }}
+</div>
+{% endblock %}

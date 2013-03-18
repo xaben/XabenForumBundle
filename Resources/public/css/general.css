@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+
+div#forum{
+    padding: 10px;
+    font: normal 10px Arial;
+    min-height: 700px;
+}
+
+div#forum a{
+
+    color: #A86C3C;
+    color: #105289;
+    text-decoration: none;
+}
+div#forum a:hover{
+    text-decoration: underline;
+}
+div#forum a.und{
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+div#forum div.fr{
+    float:right;
+}
+div#forum div.fl{
+    float:left;
+}
+
+div#forum div.clear{
+    clear:both;
+}
+
+div#forum blockquote{
+    margin: 10px 0 10px 15px;
+    padding: 5px;
+    border: 1px dotted #333;
+}

@@ -1,0 +1,52 @@
+div#forum table{
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+div#forum th{
+    color: white;
+    background: #A86C3C url(/bundles/xabenforum/img/th_bg.gif) repeat-x;
+    text-align: center;
+    height: 27px;
+    font: bold 11px Verdana;
+    border: 1px solid white;
+}
+div#forum td{
+    border: 1px solid white;
+    background-color: #F2F2F2;
+    text-align:center;
+    font: 10px Verdana;
+}
+div#forum td.cat{
+    height: 27px;
+    background: #ECECEC url(/bundles/xabenforum/img/cat_bg.gif) repeat-x;
+    color: #375A87;
+    font: bold 13px Verdana;
+    text-indent: 10px;
+    text-align: left;
+}
+div#forum td.c1{
+    background-color: #F9F9F9;
+    width: 46px;
+    padding: 5px;
+}
+div#forum td.c2{
+    background-color: #F9F9F9;
+    text-align: left;
+    padding: 5px;
+}
+div#forum table tr:first-child th {
+    border-top: 0;
+}
+div#forum table tr:last-child td {
+    border-bottom: 0;
+}
+div#forum table tr td:first-child,
+div#forum table tr th:first-child {
+    border-left: 0;
+}
+div#forum table tr td:last-child,
+div#forum table tr th:last-child {
+    border-right: 0;
+}

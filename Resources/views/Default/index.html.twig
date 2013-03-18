@@ -1,0 +1,33 @@
+{% extends "XabenForumBundle::layout.html.twig" %}
+
+
+{% block content %}
+<div id="forum">
+	<table>
+		<tr>
+			<th colspan="2">Forum</th>
+			<th style="width: 100px">Subiecte</th>
+			<th style="width: 100px">Mesaje</th>
+			<th style="width: 150px">Ultimul mesaj</th>
+		</tr>
+	    {% for category in categories %}
+		    <tr>
+				<td colspan="5" class="cat">
+				    {{ category.title }}
+				</td>
+		    </tr>
+		    {% for forum in category.forums %}
+		    <tr>
+		    	<td class="c1"><img src="/bundles/Xabenforum/img/folder_big.gif"/></td>
+				<td class="c2">
+				    <a href="{{ path('XabenForumBundle_topics', { 'forumId': forum.id }) }}">{{ forum.title }}</a><br/>{{ forum.description }}
+				</td>
+				<td>{{ forum.topiccount }}</td>
+				<td>{{ forum.posts }}</td>
+				<td>{% if forum.lastpost is not null %}{{ forum.lastpost.posttime | date('d M Y H:i:s')}}<br/><a class="member">{{ forum.lastpost.poster }}</a>{% endif %}</td>
+		    </tr>
+		    {% endfor %}
+	    {% endfor %}
+	</table>
+</div>
+{% endblock %}

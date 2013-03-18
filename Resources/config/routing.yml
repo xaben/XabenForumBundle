@@ -1,0 +1,19 @@
+XabenForumBundle_index:
+    pattern:  /
+    defaults: { _controller: XabenForumBundle:Default:index }
+
+XabenForumBundle_topics:
+    pattern:  /topics/{forumId}/{page}
+    defaults: { _controller: XabenForumBundle:Default:topics, page: 1 }
+
+XabenForumBundle_posts:
+    pattern:  /posts/{topicId}/{page}
+    defaults: { _controller: XabenForumBundle:Default:posts, page: 1 }
+
+XabenForumBundle_newtopic:
+    pattern:  /new/topic/{forumId}
+    defaults: { _controller: XabenForumBundle:Default:newtopic }
+
+XabenForumBundle_newpost:
+    pattern:  /new/post/{topicId}
+    defaults: { _controller: XabenForumBundle:Default:newpost }

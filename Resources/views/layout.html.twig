@@ -1,0 +1,20 @@
+{% extends "XabenSiteBundle::layout.html.twig" %}
+
+{% block forumcss %}
+    {% stylesheets
+        '@XabenForumBundle/Resources/public/css/*'
+        output='css/forum.1.0.css' filter='?yui_css'
+    %}
+    <link rel="stylesheet" href="{{ asset(asset_url) }}" type="text/css"/>
+    {% endstylesheets %}
+{% endblock %}
+
+
+{% block forumjs %}
+    {% javascripts
+       '@XabenForumBundle/Resources/public/js/*'
+        output='js/forum.1.0.js'
+    %}
+    <script type="text/javascript" src="{{ asset(asset_url) }}"></script>
+    {% endjavascripts %}
+{% endblock %}

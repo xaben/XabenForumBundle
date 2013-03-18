@@ -1,0 +1,39 @@
+{% extends "XabenForumBundle::layout.html.twig" %}
+
+
+
+{% block postnav %}
+<div class="nav">
+    <a class="button" href="{{ path('XabenForumBundle_newpost', { 'topicId': posts[0].topic.id }) }}">New Post</a>
+
+    <a href="{{ path('XabenForumBundle_index') }}">Forum Index</a> ->
+    <a href="{{ path('XabenForumBundle_topics', { 'forumId': posts[0].topic.forum.id }) }}">{{ posts[0].topic.forum.title }}</a>{# ->
+    <a href="{{ path('XabenForumBundle_posts', { 'topicId': posts[0].topic.id }) }}">{{ posts[0].topic.title }}</a>  #}
+    {{ knp_pagination_render(posts) }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="forum">
+		{{ block('postnav') }}
+
+        {% for post in posts %}
+
+            <div class="{% if loop.index is odd %}c1{% else %}c2{% endif %}">
+                <div class="post">
+                    <h3><a href="/">{{ post.topic.title }}</a></h3>
+                    <p class="addr"><img src="/bundles/Xabenforum/img/icon_post_target.gif"/> by <a href="/">{{ post.poster }}</a> on {{ post.posttime | date('d-m-Y H:i:s') }}</p>
+                    {{ post.posttext.text }}
+                </div>
+                <div class="info">
+                     <img src="{{ gravatar( post.poster.email ) }}"/><br/>
+                     <a href="/" class="member">{{ post.poster.username }}</a><br/><br/>
+                     <strong>Posts:</strong> xxx<br/>
+                     <strong>Registered:</strong> 12 Feb 2012<br/>
+                     <strong>Location:</strong> Chisinau, Moldova
+                </div>
+            </div>
+        {% endfor %}
+        {{ block('postnav') }}
+</div>
+{% endblock %}
