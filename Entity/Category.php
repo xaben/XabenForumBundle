@@ -54,7 +54,7 @@ class Category
 
     public function __toString()
     {
-        return $this->title;
+        return null === $this->title ? '' : $this->title;
     }
 
     /**
