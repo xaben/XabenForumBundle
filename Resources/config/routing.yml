@@ -4,16 +4,16 @@ XabenForumBundle_index:
 
 XabenForumBundle_topics:
     pattern:  /topics/{forumId}/{page}
-    defaults: { _controller: XabenForumBundle:Default:topics, page: 1 }
+    defaults: { _controller: XabenForumBundle:Topic:list, page: 1 }
 
 XabenForumBundle_posts:
     pattern:  /posts/{topicId}/{page}
-    defaults: { _controller: XabenForumBundle:Default:posts, page: 1 }
+    defaults: { _controller: XabenForumBundle:Post:list, page: 1 }
 
 XabenForumBundle_newtopic:
     pattern:  /new/topic/{forumId}
-    defaults: { _controller: XabenForumBundle:Default:newtopic }
+    defaults: { _controller: XabenForumBundle:Topic:create }
 
 XabenForumBundle_newpost:
     pattern:  /new/post/{topicId}
-    defaults: { _controller: XabenForumBundle:Default:newpost }
+    defaults: { _controller: XabenForumBundle:Post:create }
