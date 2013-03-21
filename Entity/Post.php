@@ -188,9 +188,9 @@ class Post
     /**
      * Set poster
      *
-     * @param Xaben\ProfileBundle\Entity\User $poster
+     * @param Xaben\ForumBundle\Entity\Userdata $poster
      */
-    public function setPoster(\Xaben\ProfileBundle\Entity\User $poster)
+    public function setPoster(\Xaben\ForumBundle\Entity\Userdata $poster)
     {
         $this->poster = $poster;
     }
@@ -198,7 +198,7 @@ class Post
     /**
      * Get poster
      *
-     * @return Xaben\ProfileBundle\Entity\User
+     * @return Xaben\ProfileBundle\Entity\Userdata
      */
     public function getPoster()
     {

@@ -28,6 +28,10 @@ class Userdata
      * @var UserInterface
      */
     protected $baseuser;
+    
+    public function __toString(){
+        return $this->baseuser->getUsername();
+    }
 
     /**
      * Get id
@@ -44,7 +48,7 @@ class Userdata
      *
      * @param FOS\UserBundle\Model\UserInterface $masteruser
      */
-    public function setMasteruser(FOS\UserBundle\Model\UserInterface $baseuser)
+    public function setMasteruser($baseuser)
     {
         $this->baseuser = $baseuser;
     }
