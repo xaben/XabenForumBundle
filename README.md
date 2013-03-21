@@ -51,6 +51,25 @@ Usually when installing new bundles it's good practice to also delete your cache
 php app/console cache:clear
 ```
 
+Enable assetic for the forum bunlde:
+```yaml
+assetic:
+    # ....
+    bundles:        [ XabenForumBundle ]
+```
+
+
+Configure FOSUserBundle then link your user entity to the user interface:
+```yaml
+# app/config/config.yml
+doctrine:
+    # ....
+    orm:
+        # ....
+        resolve_target_entities:
+            FOS\UserBundle\Model\UserInterface: Acme\AppBundle\Entity\User
+```
+
 Now create or update database schema:
 
 ```console

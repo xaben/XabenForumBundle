@@ -70,7 +70,7 @@ class Topic
     private $replies = 0;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Xaben\ProfileBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Userdata")
      * @ORM\JoinColumn(name="poster_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $poster;
@@ -225,9 +225,9 @@ class Topic
     /**
      * Set poster
      *
-     * @param Xaben\ProfileBundle\Entity\User $poster
+     * @param Xaben\ForumBundle\Entity\Userdata $poster
      */
-    public function setPoster(\Xaben\ProfileBundle\Entity\User $poster)
+    public function setPoster(\Xaben\ForumBundle\Entity\Userdata $poster)
     {
         $this->poster = $poster;
     }
@@ -235,7 +235,7 @@ class Topic
     /**
      * Get poster
      *
-     * @return Xaben\ProfileBundle\Entity\User
+     * @return Xaben\ForumBundle\Entity\Userdata
      */
     public function getPoster()
     {

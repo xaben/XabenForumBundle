@@ -31,7 +31,7 @@ class Post
     private $topic;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Xaben\ProfileBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Userdata")
      * @ORM\JoinColumn(name="poster_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      * @Assert\NotBlank
      */
@@ -70,7 +70,7 @@ class Post
     private $edit_count;
 
     /**
-     * @ORM\OneToOne(targetEntity="Xaben\ForumBundle\Entity\Posttext", mappedBy="post")
+     * @ORM\OneToOne(targetEntity="Posttext", mappedBy="post")
      * @Assert\NotBlank()
      */
     protected $posttext;

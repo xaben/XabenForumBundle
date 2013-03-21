@@ -29,7 +29,7 @@ class Posttext
     private $text;
 
     /**
-     * @ORM\OneToOne(targetEntity="Xaben\ForumBundle\Entity\Post", inversedBy="posttext")
+     * @ORM\OneToOne(targetEntity="Post", inversedBy="posttext")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $post;
