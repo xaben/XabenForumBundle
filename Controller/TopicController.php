@@ -13,7 +13,7 @@ class TopicController extends Controller
     public function listAction($forumId, $page)
     {
         //get topics from current page
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $topics = $em->getRepository('XabenForumBundle:Topic')
                      ->findAllByPage($this->getRequest(), $forumId, $page, $this->get('knp_paginator'));
 

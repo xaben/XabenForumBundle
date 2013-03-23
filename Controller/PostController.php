@@ -14,7 +14,7 @@ class PostController extends Controller
     {
 
         //get topics from current page
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('XabenForumBundle:Post')
                      ->findAllByPage($this->getRequest(), $topicId, $page, $this->get('knp_paginator'));
 

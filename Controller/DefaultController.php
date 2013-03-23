@@ -9,7 +9,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         //get categories and forums
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('XabenForumBundle:Category')
                          ->findAllWithForums();
 
