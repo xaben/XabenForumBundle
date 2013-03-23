@@ -7,7 +7,6 @@ use Xaben\ForumBundle\Entity\Topic;
 use Xaben\ForumBundle\Manager\PostManager;
 use Xaben\ForumBundle\Manager\UserManager;
 use Xaben\ForumBundle\Manager\ForumManager;
-use Symfony\Component\HttpFoundation\Request;
 
 class TopicManager
 {

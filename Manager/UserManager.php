@@ -29,6 +29,7 @@ class UserManager
             $userdata->setBaseuser($user);
             $this->em->persist($userdata);
         }
+
         return $userdata;
     }
 

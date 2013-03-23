@@ -5,8 +5,6 @@ namespace Xaben\ForumBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\MinLength;
 use Symfony\Component\Validator\Constraints\Collection;
 
 class TopicType extends AbstractType

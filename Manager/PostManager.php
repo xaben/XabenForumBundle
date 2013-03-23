@@ -35,7 +35,7 @@ class PostManager
         $post->setPoster($user);
 
         //get topic
-        if (null !== $topicId){
+        if (null !== $topicId) {
             $topic = $this->em->getRepository('XabenForumBundle:Topic')
                 ->findOneById($topicId);
             $post->setTopic($topic);
@@ -69,6 +69,5 @@ class PostManager
 
         $this->em->persist($topic);
     }
-
 
 }
