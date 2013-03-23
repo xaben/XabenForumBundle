@@ -16,7 +16,13 @@ class CategoryRepository extends EntityRepository
     public function findAllWithForums()
     {
         return $this->getEntityManager()
-                    ->createQuery('SELECT c,f,p,pt FROM XabenForumBundle:Category c JOIN c.forums f LEFT JOIN f.last_post p LEFT JOIN p.posttext pt ORDER BY c.position ASC')
-                    ->getResult();
+                    ->createQuery('SELECT c,f,p,du,bu
+                        FROM XabenForumBundle:Category c
+                        JOIN c.forums f
+                        LEFT JOIN f.last_post p
+                        LEFT JOIN p.poster du
+                        LEFT JOIN du.baseuser bu
+                        ORDER BY c.position ASC')
+                    ->getArrayResult();
     }
 }

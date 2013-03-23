@@ -16,12 +16,23 @@ class TopicRepository extends EntityRepository
     public function findAllByPage(Request $request, $forumId, $page, $paginator)
     {
         $em = $this->getEntityManager();
-        $dql = 'SELECT t,f,p,u,u1,pt FROM XabenForumBundle:Topic t JOIN t.forum f JOIN t.poster u JOIN t.last_post p JOIN p.posttext pt JOIN p.poster u1 WHERE f.id = :forumId ORDER BY t.id DESC';
-        $query = $em->createQuery($dql)
-                    ->setParameter('forumId', $forumId);
+        $dql = 'SELECT t,f,p,du,bu,du1,bu1 
+            FROM XabenForumBundle:Topic t 
+            JOIN t.forum f 
+            JOIN t.poster du 
+            JOIN du.baseuser bu 
+            JOIN t.last_post p 
+            JOIN p.poster du1 
+            JOIN du1.baseuser bu1 
+            WHERE f.id = :forumId 
+            ORDER BY t.id DESC
+        ';
+        $result = $em->createQuery($dql)
+                    ->setParameter('forumId', $forumId)
+                    ->getArrayResult();
 
         $pagination = $paginator->paginate(
-                $query,
+                $result,
                 $request->query->get('page', $page),
                 10
         );

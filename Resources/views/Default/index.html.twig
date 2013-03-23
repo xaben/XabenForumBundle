@@ -24,7 +24,7 @@
 				</td>
 				<td>{{ forum.topiccount }}</td>
 				<td>{{ forum.posts }}</td>
-				<td>{% if forum.lastpost is not null %}{{ forum.lastpost.posttime | date('d M Y H:i:s')}}<br/><a class="member">{{ forum.lastpost.poster }}</a>{% endif %}</td>
+				<td>{% if forum.last_post is not null %}{{ forum.last_post.post_time | date('d M Y H:i:s')}}<br/><a class="member">{{ forum.last_post.poster.baseuser.username }}</a>{% endif %}</td>
 		    </tr>
 		    {% endfor %}
 	    {% endfor %}

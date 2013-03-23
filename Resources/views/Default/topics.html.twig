@@ -28,10 +28,10 @@
 				<td class="c2">
 				    <a href="{{ path('XabenForumBundle_posts', { 'topicId': topic.id }) }}">{{ topic.title }}</a>
 				</td>
-				<td>{{ topic.poster }}</td>
+				<td>{{ topic.poster.baseuser.username }}</td>
 				<td>{{ topic.replies }}</td>
 				<td>{{ topic.views }}</td>
-				<td>{{ topic.lastpost.posttime |date('d M Y H:i:s') }}<br/><a class="member">{{topic.lastpost.poster}}</a></td>
+				<td>{{ topic.last_post.post_time |date('d M Y H:i:s') }}<br/><a class="member">{{topic.last_post.poster.baseuser.username}}</a></td>
 		    </tr>
 	    {% endfor %}
 	</table>
