@@ -198,7 +198,7 @@ class Post
     /**
      * Get poster
      *
-     * @return Xaben\ProfileBundle\Entity\Userdata
+     * @return Xaben\ForumBundle\Entity\Userdata
      */
     public function getPoster()
     {

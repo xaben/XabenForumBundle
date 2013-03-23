@@ -10,7 +10,7 @@ use FOS\UserBundle\Model\UserInterface;
  * Xaben\ForumBundle\Entity\Userdata
  *
  * @ORM\Table(name="forum_userdata")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Xaben\ForumBundle\Entity\UserdataRepository")
  */
 class Userdata
 {
@@ -28,8 +28,25 @@ class Userdata
      * @var UserInterface
      */
     protected $baseuser;
-    
-    public function __toString(){
+
+    /**
+     * @var integer $posts
+     *
+     * @ORM\Column(name="posts", type="integer")
+     * @Assert\Type(type="integer")
+     */
+    private $posts = 0;
+
+    /**
+     * @var integer $topics
+     *
+     * @ORM\Column(name="topics", type="integer")
+     * @Assert\Type(type="integer")
+     */
+    private $topics = 0;
+
+    public function __toString()
+    {
         return $this->baseuser->getUsername();
     }
 
@@ -48,7 +65,7 @@ class Userdata
      *
      * @param FOS\UserBundle\Model\UserInterface $masteruser
      */
-    public function setMasteruser($baseuser)
+    public function setBaseuser($baseuser)
     {
         $this->baseuser = $baseuser;
     }
@@ -61,5 +78,45 @@ class Userdata
     public function getBaseuser()
     {
         return $this->baseuser;
+    }
+
+    /**
+     * Set posts
+     *
+     * @param integer $posts
+     */
+    public function setPosts($posts)
+    {
+        $this->posts = $posts;
+    }
+
+    /**
+     * Get posts
+     *
+     * @return integer
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * Set topics
+     *
+     * @param integer $topics
+     */
+    public function setTopics($topics)
+    {
+        $this->topics = $topics;
+    }
+
+    /**
+     * Get views
+     *
+     * @return integer
+     */
+    public function getTopics()
+    {
+        return $this->topics;
     }
 }

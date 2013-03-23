@@ -26,8 +26,8 @@
                     {{ post.posttext.text }}
                 </div>
                 <div class="info">
-                     <img src="{{ gravatar( post.poster.email ) }}"/><br/>
-                     <a href="/" class="member">{{ post.poster.username }}</a><br/><br/>
+                     <img src="{{ gravatar( post.poster.baseuser.email ) }}"/><br/>
+                     <a href="/" class="member">{{ post.poster.baseuser.username }}</a><br/><br/>
                      <strong>Posts:</strong> xxx<br/>
                      <strong>Registered:</strong> 12 Feb 2012<br/>
                      <strong>Location:</strong> Chisinau, Moldova

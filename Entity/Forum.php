@@ -88,12 +88,12 @@ class Forum
     {
         $this->topics = new ArrayCollection();
     }
-    
+
     public function __toString()
     {
         return null === $this->title ? '' : $this->title;
     }
-    
+
     /**
      * Get id
      *

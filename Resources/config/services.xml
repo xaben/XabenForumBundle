@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="xaben.forum.usermanager" class="Xaben\ForumBundle\Manager\UserManager">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="security.context"/>
+        </service>
+
+        <service id="xaben.forum.postmanager" class="Xaben\ForumBundle\Manager\PostManager" scope="request">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="xaben.forum.usermanager"/>
+            <argument type="service" id="xaben.forum.forummanager"/>
+            <argument type="service" id="request"/>
+        </service>
+
+        <service id="xaben.forum.topicmanager" class="Xaben\ForumBundle\Manager\TopicManager" scope="request">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="xaben.forum.postmanager"/>
+            <argument type="service" id="xaben.forum.usermanager"/>
+            <argument type="service" id="xaben.forum.forummanager"/>
+        </service>
+
+        <service id="xaben.forum.forummanager" class="Xaben\ForumBundle\Manager\ForumManager" scope="request">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+    </services>
+
+</container>

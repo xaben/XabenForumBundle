@@ -12,8 +12,16 @@ XabenForumBundle_posts:
 
 XabenForumBundle_newtopic:
     pattern:  /new/topic/{forumId}
+    defaults: { _controller: XabenForumBundle:Topic:new }
+
+XabenForumBundle_createtopic:
+    pattern:  /create/topic/{forumId}
     defaults: { _controller: XabenForumBundle:Topic:create }
 
 XabenForumBundle_newpost:
     pattern:  /new/post/{topicId}
+    defaults: { _controller: XabenForumBundle:Post:new }
+
+XabenForumBundle_createpost:
+    pattern:  /create/post/{topicId}
     defaults: { _controller: XabenForumBundle:Post:create }

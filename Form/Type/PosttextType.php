@@ -6,23 +6,22 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PostType extends AbstractType
+class PosttextType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('posttext', new PosttextType());
+        $builder->add('text');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Xaben\ForumBundle\Entity\Post',
-            'cascade_validation' => true,
+            'data_class' => 'Xaben\ForumBundle\Entity\Posttext',
         ));
     }
 
     public function getName()
     {
-        return 'post';
+        return 'posttext';
     }
 }

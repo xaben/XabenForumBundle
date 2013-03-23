@@ -3,13 +3,8 @@
 namespace Xaben\ForumBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Xaben\ForumBundle\Entity\Topic;
-use Xaben\ForumBundle\Entity\Post;
-use Xaben\ForumBundle\Entity\Posttext;
-use Xaben\ForumBundle\Form\Type\TopicType;
 use Xaben\ForumBundle\Form\Type\PostType;
 use Symfony\Component\HttpFoundation\Request;
-use \DateTime;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PostController extends Controller
@@ -27,6 +22,22 @@ class PostController extends Controller
 
     }
 
+    public function newAction($topicId)
+    {
+        //check if user logged in
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
+        //render form
+        $form = $this->createForm(new PostType(), null);
+
+        return $this->render('XabenForumBundle:Default:newpost.html.twig', array(
+            'form' => $form->createView(),
+            'topicId' => $topicId,
+        ));
+    }
+
     public function createAction(Request $request, $topicId)
     {
         //check if user logged in
@@ -34,67 +45,21 @@ class PostController extends Controller
             throw new AccessDeniedException();
         }
 
-        //display form
-        $form = $this->createForm(new PostType(), null);
+        //create new post
+        $postmanager = $this->get('xaben.forum.postmanager');
+        $post = $postmanager->getNewPost($topicId);
 
+        $form = $this->createForm(new PostType(), $post);
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
-
             if ($form->isValid()) {
-
-                $data = $form->getData();
-
-                // perform some action, such as saving the task to the database
-                $em = $this->getDoctrine()->getEntityManager();
-
-                //get topic
-                $topic = $em->getRepository('XabenForumBundle:Topic')
-                ->findOneById($topicId);
-
-                //get forum
-                $forum = $topic->getForum();
-
-                //get user
-                $poster = $this->get('security.context')->getToken()->getUser();
-
-                //set post properties
-                $post = new Post();
-                $post->setIp($request->getClientIp());
-                $post->setPoster($poster);
-                $post->setPostTime(new DateTime);
-                $post->setTopic($topic);
-
-                $posttext = new Posttext();
-                $posttext->setText($data['text']);
-
-                //bind toghether
-                $posttext->setPost($post);
-
-                $topic->addPost($post);
-                $topic->setFirstPost($post);
-                $topic->setLastPost($post);
-                $topic->setReplies($topic->getReplies() + 1);
-
-                //update forum
-                $forum->setLastPost($post);
-                $forum->setPosts($forum->getPosts() + 1);
-
-                $em->persist($topic);
-                $em->persist($posttext);
-                $em->persist($post);
-                $em->persist($forum);
-
-                $em->flush();
-
-                return $this->redirect($this->generateUrl('XabenForumBundle_posts', array('topicId' => $topicId)));
+                $postmanager->addPost($post);
+                $this->getDoctrine()->getEntityManager()->flush();
             }
         }
 
-        return $this->render('XabenForumBundle:Default:newpost.html.twig', array(
-                'form' => $form->createView(),
-                'topicId' => $topicId,
-        ));
-
+        return $this->redirect($this->generateUrl('XabenForumBundle_posts', array(
+            'topicId' => $topicId
+        )));
     }
-
 }

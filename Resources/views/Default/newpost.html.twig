@@ -3,8 +3,8 @@
 
 {% block content %}
 <div id="forum">
-    <div class="inner_header">Postează un răspuns</div>
-        <form action="{{ path('XabenForumBundle_newpost', { 'topicId': topicId }) }}" method="post" {{ form_enctype(form) }}>
+    <div class="inner_header">Post a reply</div>
+        <form action="{{ path('XabenForumBundle_createpost', { 'topicId': topicId }) }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <div>
             <input type="submit"  value="Postează"  />

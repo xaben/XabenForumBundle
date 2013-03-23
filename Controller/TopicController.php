@@ -28,6 +28,24 @@ class TopicController extends Controller
         return $this->render('XabenForumBundle:Default:topics.html.twig', array('topics'=>$topics, 'forum'=>$forum));
     }
 
+    public function newAction($forumId)
+    {
+        //check if user logged in
+        if (false === $this->get('security.context')->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
+        //render form
+        $topicmanager = $this->get('xaben.forum.topicmanager');
+        $topic = $topicmanager->getNewTopic($forumId);
+        $form = $this->createForm(new TopicType(), $topic);
+
+        return $this->render('XabenForumBundle:Default:newtopic.html.twig', array(
+            'form' => $form->createView(),
+            'forumId' => $forumId,
+        ));
+    }
+
     public function createAction(Request $request, $forumId)
     {
         //check if user logged in
@@ -35,65 +53,16 @@ class TopicController extends Controller
             throw new AccessDeniedException();
         }
 
-        //display form
-        $form = $this->createForm(new TopicType(), null);
+        //create new topic
+        $topicmanager = $this->get('xaben.forum.topicmanager');
+        $topic = $topicmanager->getNewTopic($forumId);
+        $form = $this->createForm(new TopicType(), $topic);
 
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
-
             if ($form->isValid()) {
-
-                $data = $form->getData();
-
-                // perform some action, such as saving the task to the database
-                $em = $this->getDoctrine()->getEntityManager();
-
-                //get forum
-                $forum = $em->getRepository('XabenForumBundle:Forum')
-                ->findOneById($forumId);
-
-                //get user
-                $masteruser = $this->get('security.context')->getToken()->getUser();
-                $poster = new Userdata();
-                $poster->setMasteruser($masteruser);
-
-                //set topic properties
-                $topic = new Topic();
-                $topic->setForum($forum);
-                $topic->setPoster($poster);
-                $topic->setPostTime(new DateTime);
-                $topic->setTitle($data['title']);
-                $topic->setReplies(1);
-
-                $post = new Post();
-                $post->setIp($request->getClientIp());
-                $post->setPoster($poster);
-                $post->setPostTime(new DateTime);
-                $post->setTopic($topic);
-
-                $posttext = new Posttext();
-                $posttext->setText($data['text']);
-
-                //bind toghether
-                $posttext->setPost($post);
-
-                $topic->addPost($post);
-                $topic->setFirstPost($post);
-                $topic->setLastPost($post);
-
-                //update forum
-                $forum->setLastPost($post);
-                $forum->setTopiccount($forum->getTopiccount() + 1);
-                $forum->setPosts($forum->getPosts() + 1);
-
-                $em->persist($topic);
-                $em->persist($posttext);
-                $em->persist($post);
-                $em->persist($forum);
-                $em->persist($poster);
-
-                $em->flush();
-
+                $topicmanager->addTopic($topic);
+                $this->getDoctrine()->getEntityManager()->flush();
                 return $this->redirect($this->generateUrl('XabenForumBundle_topics', array('forumId' => $forumId)));
             }
         }

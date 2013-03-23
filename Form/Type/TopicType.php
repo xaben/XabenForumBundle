@@ -14,18 +14,14 @@ class TopicType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title');
-        $builder->add('text', 'textarea');
+        $builder->add('posts', 'collection', array('type' => new PostType()));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $collectionConstraint = new Collection(array(
-            'title' => new MinLength(5),
-            'text' => new NotBlank(),
-        ));
-
         $resolver->setDefaults(array(
-            'validation_constraint' => $collectionConstraint
+            'data_class' => 'Xaben\ForumBundle\Entity\Topic',
+            'cascade_validation' => true,
         ));
     }
 
