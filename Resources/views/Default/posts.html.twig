@@ -30,7 +30,8 @@
                      <a href="/" class="member">{{ post.poster.baseuser.username }}</a><br/><br/>
                      <strong>Posts:</strong> {{ post.poster.posts }}<br/>
                      <strong>Topics started:</strong> {{ post.poster.topics }}<br/>
-                     <strong>Last post:</strong> {{ post.poster.lastpost | date('d-m-Y H:i:s') }}
+                     <strong>Last post:</strong> {{ post.poster.lastpost | date('d-m-Y H:i:s') }}<br />
+                     <strong>First post:</strong> {{ post.poster.firstactivity | date('d-m-Y H:i:s') }}
                 </div>
             </div>
         {% endfor %}

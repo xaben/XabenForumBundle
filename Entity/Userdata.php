@@ -46,12 +46,20 @@ class Userdata
     private $topics = 0;
 
     /**
-     * @var datetime $lastpost
+     * @var datetime $last_post
      *
-     * @ORM\Column(name="lastpost", type="datetime")
+     * @ORM\Column(name="last_post", type="datetime", nullable=true)
      * @Assert\DateTime()
      */
-    private $lastpost;
+    private $last_post;
+    
+    /**
+     * @var datetime $first_activity
+     *
+     * @ORM\Column(name="first_activity", type="datetime", nullable=true)
+     * @Assert\DateTime()
+     */
+    private $first_activity;
 
     public function __toString()
     {
@@ -71,7 +79,7 @@ class Userdata
     /**
      * Set baseuser
      *
-     * @param FOS\UserBundle\Model\UserInterface $masteruser
+     * @param FOS\UserBundle\Model\UserInterface $baseuser
      */
     public function setBaseuser($baseuser)
     {
@@ -129,22 +137,48 @@ class Userdata
     }
 
     /**
-     * Set lastpost
+     * Set last_post
      *
-     * @param datetime $lastpost
+     * @param \DateTime $lastPost
+     * @return Userdata
      */
-    public function setLastpost($lastpost)
+    public function setLastPost($lastPost)
     {
-        $this->lastpost = $lastpost;
+        $this->last_post = $lastPost;
+    
+        return $this;
     }
 
     /**
-     * Get lastpost
+     * Get last_post
      *
-     * @return datetime
+     * @return \DateTime 
      */
-    public function getLastpost()
+    public function getLastPost()
     {
-        return $this->lastpost;
+        return $this->last_post;
+    }
+
+    /**
+     * Set first_activity
+     *
+     * @param \DateTime $firstActivity
+     * @return Userdata
+     */
+    public function setFirstActivity($firstActivity)
+    {
+        $this->first_activity = $firstActivity;
+    
+        return $this;
+    }
+
+    /**
+     * Get first_activity
+     *
+     * @return \DateTime 
+     */
+    public function getFirstActivity()
+    {
+        return $this->first_activity;
     }
 }

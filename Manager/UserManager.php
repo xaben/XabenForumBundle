@@ -27,26 +27,11 @@ class UserManager
         if (null === $userdata) {
             $userdata = new Userdata();
             $userdata->setBaseuser($user);
+            $userdata->setFirstActivity(new \Datetime());
             $this->em->persist($userdata);
+            $this->em->flush();
         }
 
         return $userdata;
     }
-
-    public function incrementPosts()
-    {
-        $userdata = $this->getCurrentUser();
-        $userdata->setPosts($userdata->getPosts() + 1);
-
-        $this->em->persist($userdata);
-    }
-
-    public function incrementTopics()
-    {
-        $userdata = $this->getCurrentUser();
-        $userdata->setTopics($userdata->getTopics() + 1);
-
-        $this->em->persist($userdata);
-    }
-
 }

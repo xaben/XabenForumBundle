@@ -22,15 +22,15 @@ class UserdataUpdater
 
         if ($this->container->has('xaben.forum.usermanager')) {
 
-            $userdata = $this->container->get('xaben.forum.usermanager')->getCurrentUser();
-
             if ($post instanceof Post) {
+                $userdata = $this->container->get('xaben.forum.usermanager')->getCurrentUser();
                 $userdata->setPosts($userdata->getPosts() + 1);
                 $userdata->setLastpost(new \Datetime());
                 $em->persist($userdata);
             }
 
             if ($post instanceof Topic) {
+                $userdata = $this->container->get('xaben.forum.usermanager')->getCurrentUser();
                 $userdata->setTopics($userdata->getTopics() + 1);
                 $em->persist($userdata);
             }
