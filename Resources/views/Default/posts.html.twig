@@ -28,9 +28,9 @@
                 <div class="info">
                      <img src="{{ gravatar( post.poster.baseuser.email ) }}"/><br/>
                      <a href="/" class="member">{{ post.poster.baseuser.username }}</a><br/><br/>
-                     <strong>Posts:</strong> xxx<br/>
-                     <strong>Registered:</strong> 12 Feb 2012<br/>
-                     <strong>Location:</strong> Chisinau, Moldova
+                     <strong>Posts:</strong> {{ post.poster.posts }}<br/>
+                     <strong>Topics started:</strong> {{ post.poster.topics }}<br/>
+                     <strong>Last post:</strong> {{ post.poster.lastpost | date('d-m-Y H:i:s') }}
                 </div>
             </div>
         {% endfor %}
