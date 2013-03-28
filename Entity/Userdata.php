@@ -45,6 +45,14 @@ class Userdata
      */
     private $topics = 0;
 
+    /**
+     * @var datetime $lastpost
+     *
+     * @ORM\Column(name="lastpost", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $lastpost;
+
     public function __toString()
     {
         return $this->baseuser->getUsername();
@@ -118,5 +126,25 @@ class Userdata
     public function getTopics()
     {
         return $this->topics;
+    }
+
+    /**
+     * Set lastpost
+     *
+     * @param datetime $lastpost
+     */
+    public function setLastpost($lastpost)
+    {
+        $this->lastpost = $lastpost;
+    }
+
+    /**
+     * Get lastpost
+     *
+     * @return datetime
+     */
+    public function getLastpost()
+    {
+        return $this->lastpost;
     }
 }

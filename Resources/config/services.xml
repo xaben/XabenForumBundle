@@ -27,16 +27,21 @@
         <service id="xaben.forum.forummanager" class="Xaben\ForumBundle\Manager\ForumManager" scope="request">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
-        
+
         <!-- Doctrine listeners -->
-        <service id="xaben.topic.updater" class="Xaben\ForumBundle\EventListener\TopicUpdater">
+        <service id="xaben.forum.topicupdater" class="Xaben\ForumBundle\EventListener\TopicUpdater">
             <tag name="doctrine.event_listener" event="prePersist" />
         </service>
-        
-        <service id="xaben.forum.updater" class="Xaben\ForumBundle\EventListener\ForumUpdater">
+
+        <service id="xaben.forum.forumupdater" class="Xaben\ForumBundle\EventListener\ForumUpdater">
             <tag name="doctrine.event_listener" event="prePersist" />
         </service>
-        
+
+        <service id="xaben.forum.userdataupdater" class="Xaben\ForumBundle\EventListener\UserdataUpdater">
+            <argument type="service" id="service_container"/>
+            <tag name="doctrine.event_listener" event="prePersist" />
+        </service>
+
 
     </services>
 
