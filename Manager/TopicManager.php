@@ -37,16 +37,4 @@ class TopicManager
 
         return $topic;
     }
-
-    public function addTopic(Topic $topic)
-    {
-        //save related post
-        $posts = $topic->getPosts();
-        foreach ($posts as $post) {
-            $this->postmanager->addPost($post);
-        }
-
-        $this->forummanager->addTopic($topic);
-        $this->em->persist($topic);
-    }
 }

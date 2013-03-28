@@ -53,7 +53,7 @@ class PostController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if ($form->isValid()) {
-                $postmanager->addPost($post);
+                $this->getDoctrine()->getEntityManager()->persist($post);
                 $this->getDoctrine()->getEntityManager()->flush();
             }
         }

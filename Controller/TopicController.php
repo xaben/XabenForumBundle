@@ -56,7 +56,10 @@ class TopicController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if ($form->isValid()) {
-                $topicmanager->addTopic($topic);
+                foreach ($topic->getPosts() as $post) {
+                    $this->getDoctrine()->getEntityManager()->persist($post);
+                }
+                $this->getDoctrine()->getEntityManager()->persist($topic);
                 $this->getDoctrine()->getEntityManager()->flush();
 
                 return $this->redirect($this->generateUrl('XabenForumBundle_topics', array('forumId' => $forumId)));

@@ -40,26 +40,4 @@ class PostManager
 
         return $post;
     }
-
-    public function addPost(Post $post)
-    {
-        $this->updateTopic($post);
-        $this->forummanager->addPost($post);
-
-        $this->em->persist($post);
-    }
-
-    private function updateTopic(Post $post)
-    {
-        $topic = $post->getTopic();
-        if (!$topic->getFirstPost()) {
-            $topic->setFirstPost($post);
-        }
-        $topic->setLastPost($post);
-        $topic->setReplies($topic->getReplies() + 1);
-        $topic->setPostTime(new \DateTime);
-
-        $this->em->persist($topic);
-    }
-
 }
