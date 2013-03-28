@@ -14,6 +14,11 @@ class ForumManager
     {
         $this->em = $em;
     }
+    
+    public function getForumById($forumId) {
+        return $this->em->getRepository('XabenForumBundle:Forum')
+            ->findOneById($forumId);
+    }
 
     public function addTopic(Topic $topic)
     {

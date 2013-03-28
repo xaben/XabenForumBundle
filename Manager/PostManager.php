@@ -29,10 +29,7 @@ class PostManager
         $post = new Post();
         $post->setIp($this->request->getClientIp());
         $post->setPostTime(new \DateTime);
-
-        //get user
-        $user = $this->usermanager->getCurrentUser();
-        $post->setPoster($user);
+        $post->setPoster($this->usermanager->getCurrentUser());
 
         //get topic
         if (null !== $topicId) {
@@ -46,14 +43,9 @@ class PostManager
 
     public function addPost(Post $post)
     {
-        //bind posttext
-        $posttext = $post->getPosttext();
-        $posttext->setPost($post);
-
         $this->updateTopic($post);
         $this->forummanager->addPost($post);
 
-        $this->em->persist($posttext);
         $this->em->persist($post);
     }
 

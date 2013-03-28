@@ -70,7 +70,7 @@ class Post
     private $edit_count;
 
     /**
-     * @ORM\OneToOne(targetEntity="Posttext", mappedBy="post")
+     * @ORM\OneToOne(targetEntity="Posttext", mappedBy="post", cascade={"persist"})
      * @Assert\NotBlank()
      */
     protected $posttext;
@@ -211,8 +211,10 @@ class Post
      * @param  Xaben\ForumBundle\Entity\Posttext $posttext
      * @return Post
      */
-    public function setPosttext(\Xaben\ForumBundle\Entity\Posttext $posttext = null)
+    public function setPosttext(\Xaben\ForumBundle\Entity\Posttext $posttext)
     {
+        $posttext->setPost($this);
+        
         $this->posttext = $posttext;
 
         return $this;

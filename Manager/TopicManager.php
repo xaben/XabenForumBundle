@@ -22,23 +22,18 @@ class TopicManager
         $this->usermanager = $usermanager;
         $this->forummanager = $forummanager;
     }
+    
+    public function getTopicById($topicId) {
+        return $this->em->getRepository('XabenForumBundle:Topic')
+            ->findOneById($topicId);
+    }
 
-    public function getNewTopic($forumId = null)
+    public function getNewTopic($forumId)
     {
-        //get user
-        $user = $this->usermanager->getCurrentUser();
-
-        //get forum
-        $forum = $this->em->getRepository('XabenForumBundle:Forum')
-            ->findOneById($forumId);
-
-        //create topic and bind a new post
         $topic = new Topic();
-        $topic->setForum($forum);
-        $topic->setPoster($user);
-        $post = $this->postmanager->getNewPost();
-        $post->setTopic($topic);
-        $topic->addPost($post);
+        $topic->setForum($this->forummanager->getForumById($forumId));
+        $topic->setPoster($this->usermanager->getCurrentUser());
+        $topic->addPost($this->postmanager->getNewPost());
 
         return $topic;
     }

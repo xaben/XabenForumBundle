@@ -209,6 +209,8 @@ class Topic
      */
     public function addPost(\Xaben\ForumBundle\Entity\Post $posts)
     {
+        $posts->setTopic($this);
+
         $this->posts[] = $posts;
     }
 
