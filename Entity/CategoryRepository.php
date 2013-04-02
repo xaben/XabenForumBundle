@@ -18,7 +18,7 @@ class CategoryRepository extends EntityRepository
         return $this->getEntityManager()
                     ->createQuery('SELECT c,f,p,du,bu
                         FROM XabenForumBundle:Category c
-                        JOIN c.forums f
+                        LEFT JOIN c.forums f
                         LEFT JOIN f.last_post p
                         LEFT JOIN p.poster du
                         LEFT JOIN du.baseuser bu

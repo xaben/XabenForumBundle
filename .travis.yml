@@ -5,7 +5,7 @@ php:
   - 5.4
 
 env:
-  - SYMFONY_VERSION=origin/master
+  - SYMFONY_VERSION=origin/master DB=sqlite
 
 before_script:
   - composer install --dev

@@ -10,13 +10,17 @@
          stopOnFailure="false"
          syntaxCheck="false"
          verbose="true"
-         bootstrap="Tests/tests/bootstrap.php"
+         bootstrap="Tests/bootstrap.php"
 >
     <testsuites>
-        <testsuite name="SeoBundle Test Suite">
+        <testsuite name="ForumBundle Test Suite">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>
+    
+    <php>
+        <server name="KERNEL_DIR" value="./Tests/Functional/app" />
+    </php>
 
     <filter>
         <whitelist>
