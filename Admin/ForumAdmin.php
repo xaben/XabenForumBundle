@@ -10,6 +10,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class ForumAdmin extends Admin
 {
+    /**
+     * {@inheritDoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -19,6 +22,9 @@ class ForumAdmin extends Admin
         ;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -28,6 +34,9 @@ class ForumAdmin extends Admin
         ;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -37,6 +46,9 @@ class ForumAdmin extends Admin
         ;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function validate(ErrorElement $errorElement, $object)
     {
         $errorElement

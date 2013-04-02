@@ -9,7 +9,13 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PostController extends Controller
 {
-
+    /**
+     * Display and paginate all posts for a given topic
+     *
+     * @param integer $topicId
+     * @param integer $page
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function listAction($topicId, $page)
     {
 
@@ -22,6 +28,13 @@ class PostController extends Controller
 
     }
 
+    /**
+     * Display form for creating a new post in a given topic
+     *
+     * @param integer $topicId
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     public function newAction($topicId)
     {
         //check if user logged in
@@ -38,6 +51,14 @@ class PostController extends Controller
         ));
     }
 
+    /**
+     * Process new post form data
+     *
+     * @param Request $request
+     * @param integer $topicId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     public function createAction(Request $request, $topicId)
     {
         //check if user logged in
@@ -51,10 +72,10 @@ class PostController extends Controller
 
         $form = $this->createForm(new PostType(), $post);
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->bind($request);
             if ($form->isValid()) {
-                $this->getDoctrine()->getEntityManager()->persist($post);
-                $this->getDoctrine()->getEntityManager()->flush();
+                $this->getDoctrine()->getManager()->persist($post);
+                $this->getDoctrine()->getManager()->flush();
             }
         }
 

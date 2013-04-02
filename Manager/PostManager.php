@@ -11,11 +11,14 @@ class PostManager
 {
     private $em;
     private $usermanager;
-    private $forummanager;
-    private $topicmanager;
     private $request;
 
-    public function __construct(EntityManager $em, UserManager $usermanager, ForumManager $forummanager, Request $request)
+    /**
+     * @param EntityManager $em
+     * @param UserManager $usermanager
+     * @param Request $request
+     */
+    public function __construct(EntityManager $em, UserManager $usermanager, Request $request)
     {
         $this->em = $em;
         $this->usermanager = $usermanager;
@@ -23,6 +26,12 @@ class PostManager
         $this->request = $request;
     }
 
+    /**
+     * Returns an empty Post object for use in forms
+     *
+     * @param integer $topicId
+     * @return Post
+     */
     public function getNewPost($topicId = null)
     {
         //create new Post

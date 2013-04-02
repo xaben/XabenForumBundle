@@ -11,12 +11,21 @@ class UserManager
     private $em;
     private $securitycontext;
 
+    /**
+     * @param EntityManager $em
+     * @param SecurityContextInterface $securitycontext
+     */
     public function __construct(EntityManager $em, SecurityContextInterface $securitycontext)
     {
         $this->em = $em;
         $this->securitycontext = $securitycontext;
     }
 
+    /**
+     * Creates (if it doesn't exist) and returns a Userdata object
+     *
+     * @return Userdata
+     */
     public function getCurrentUser()
     {
         //try to get existing userdata or create new one
