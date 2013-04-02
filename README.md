@@ -5,6 +5,8 @@ Basic Symfony2 Forum Bundle.
 
 This is not a working forum bundle yet!
 
+[![Build Status](https://travis-ci.org/xaben/XabenForumBundle.png)](https://travis-ci.org/xaben/XabenForumBundle)
+
 Installation
 ------------
 
