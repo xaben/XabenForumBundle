@@ -14,27 +14,27 @@
 {% block content %}
 <div id="forum">
     {{ block('topicnav') }}
-	<table>
-		<tr>
-			<th colspan="2">Topics</th>
-			<th style="width: 100px">Author</th>
-			<th style="width: 100px">Replies</th>
-			<th style="width: 100px">Views</th>
-			<th style="width: 150px">Last message</th>
-		</tr>
-	    {% for topic in topics %}
-		    <tr>
-		    	<td class="c1" style="width: 30px;"><img src="/bundles/Xabenforum/img/folder.gif"/></td>
-				<td class="c2">
-				    <a href="{{ path('XabenForumBundle_posts', { 'topicId': topic.id }) }}">{{ topic.title }}</a>
-				</td>
-				<td>{{ topic.poster.baseuser.username }}</td>
-				<td>{{ topic.replies }}</td>
-				<td>{{ topic.views }}</td>
-				<td>{{ topic.last_post.post_time |date('d M Y H:i:s') }}<br/><a class="member">{{topic.last_post.poster.baseuser.username}}</a></td>
-		    </tr>
-	    {% endfor %}
-	</table>
+    <table>
+        <tr>
+            <th colspan="2">Topics</th>
+            <th style="width: 100px">Author</th>
+            <th style="width: 100px">Replies</th>
+            <th style="width: 100px">Views</th>
+            <th style="width: 150px">Last message</th>
+        </tr>
+        {% for topic in topics %}
+            <tr>
+                <td class="c1" style="width: 30px;"><img src="/bundles/Xabenforum/img/folder.gif"/></td>
+                <td class="c2">
+                    <a href="{{ path('XabenForumBundle_posts', { 'topicId': topic.id }) }}">{{ topic.title }}</a>
+                </td>
+                <td>{{ topic.poster.baseuser.username }}</td>
+                <td>{{ topic.replies }}</td>
+                <td>{{ topic.views }}</td>
+                <td>{{ topic.last_post.post_time |date('d M Y H:i:s') }}<br/><a class="member">{{topic.last_post.poster.baseuser.username}}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
     {{ block('topicnav') }}
 </div>
 {% endblock %}

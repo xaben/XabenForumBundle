@@ -3,30 +3,30 @@
 
 {% block content %}
 <div id="forum">
-	<table>
-		<tr>
-			<th colspan="2">Forum</th>
-			<th style="width: 100px">Topics</th>
-			<th style="width: 100px">Replies</th>
-			<th style="width: 150px">Last reply</th>
-		</tr>
-	    {% for category in categories %}
-		    <tr>
-				<td colspan="5" class="cat">
-				    {{ category.title }}
-				</td>
-		    </tr>
-		    {% for forum in category.forums %}
-		    <tr>
-		    	<td class="c1"><img src="/bundles/Xabenforum/img/folder_big.gif"/></td>
-				<td class="c2">
-				    <a href="{{ path('XabenForumBundle_topics', { 'forumId': forum.id }) }}">{{ forum.title }}</a><br/>{{ forum.description }}
-				</td>
-				<td>{{ forum.topiccount }}</td>
-				<td>{{ forum.posts }}</td>
-				<td>{% if forum.last_post is not null %}{{ forum.last_post.post_time | date('d M Y H:i:s')}}<br/><a class="member">{{ forum.last_post.poster.baseuser.username }}</a>{% endif %}</td>
-		    </tr>
-		    {% endfor %}
+    <table>
+        <tr>
+            <th colspan="2">Forum</th>
+            <th style="width: 100px">Topics</th>
+            <th style="width: 100px">Replies</th>
+            <th style="width: 150px">Last reply</th>
+        </tr>
+        {% for category in categories %}
+            <tr>
+                <td colspan="5" class="cat">
+                    {{ category.title }}
+                </td>
+            </tr>
+            {% for forum in category.forums %}
+            <tr>
+                <td class="c1"><img src="/bundles/Xabenforum/img/folder_big.gif"/></td>
+                <td class="c2">
+                    <a href="{{ path('XabenForumBundle_topics', { 'forumId': forum.id }) }}">{{ forum.title }}</a><br/>{{ forum.description }}
+                </td>
+                <td>{{ forum.topiccount }}</td>
+                <td>{{ forum.posts }}</td>
+                <td>{% if forum.last_post is not null %}{{ forum.last_post.post_time | date('d M Y H:i:s')}}<br/><a class="member">{{ forum.last_post.poster.baseuser.username }}</a>{% endif %}</td>
+            </tr>
+            {% endfor %}
             {% if category.forums | length == 0 %}
                 <tr>
                     <td colspan="5">
@@ -34,7 +34,7 @@
                     </td>
                 </tr>
             {% endif %}
-	    {% endfor %}
+        {% endfor %}
         {% if categories | length == 0 %}
             <tr>
                 <td colspan="5">
@@ -42,6 +42,6 @@
                 </td>
             </tr>
         {% endif %}
-	</table>
+    </table>
 </div>
 {% endblock %}
