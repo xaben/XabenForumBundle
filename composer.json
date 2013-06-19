@@ -20,7 +20,7 @@
         "doctrine/orm": ">=2.2.3,<2.4-dev@stable",
         "doctrine/doctrine-bundle": "1.2.*@stable",
         "twig/extensions": "1.0.*@stable",
-        "symfony/assetic-bundle": "2.3.*@stable",
+        "symfony/assetic-bundle": "dev-master",
         "symfony/swiftmailer-bundle": "2.3.*@stable",
         "symfony/monolog-bundle": "2.3.*@stable",
         "sensio/distribution-bundle": "2.3.*@stable",
