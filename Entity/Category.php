@@ -33,7 +33,12 @@ class Category
      * @var string $title
      *
      * @ORM\Column(name="title", type="string", length=255)
-     * @Assert\MaxLength(255)
+     * @Assert\Length(
+     *      min = "2",
+     *      max = "255",
+     *      minMessage = "The title must be at least {{ limit }} characters length",
+     *      maxMessage = "The title cannot be longer than {{ limit }} characters length"
+     * )
      * @Assert\NotBlank()
      */
     private $title;
