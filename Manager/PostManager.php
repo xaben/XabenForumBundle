@@ -22,7 +22,7 @@ class PostManager
     {
         $this->em = $em;
         $this->usermanager = $usermanager;
-        $this->forummanager = $forummanager;
+        // $this->forummanager = $forummanager;
         $this->request = $request;
     }
 

@@ -53,7 +53,7 @@ class ForumAdmin extends Admin
     {
         $errorElement
             ->with('title')
-                ->assertMaxLength(array('limit' => 255))
+                ->assertLength(array('max' => 255))
             ->end()
         ;
     }
